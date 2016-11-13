@@ -1,0 +1,55 @@
+<div ng-if="craCreate.needLoadData !=0 ">
+    loading
+</div>
+
+<md-card  class="md-padding" flex-xs="" flex-gt-xs="10" layout="row" ng-if="craCreate.needLoadData == 0 ">
+
+
+        <md-input-container flex="20">
+            <label>User</label>
+            <md-select ng-model="craCreate.selectedUser" md-selected-text="craCreate.getSelectedText(craCreate.selectedUser.firstName+' '+craCreate.selectedUser.lastName)">
+                <md-optgroup label="user">
+                    <md-option ng-repeat="user in craCreate.users" ng-value="user" >
+                        {{user.firstName}} {{user.lastName}}
+                    </md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+
+
+        <md-input-container flex="20" ng-hide="craCreate.selectedUser == undefined">
+            <label>Year</label>
+            <md-select ng-model="craCreate.selectedYear" md-selected-text="craCreate.getSelectedText(craCreate.selectedYear)">
+                <md-optgroup label="year">
+                    <md-option ng-repeat="year in craCreate.years" ng-value="year" >
+                        {{year}}
+                    </md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+
+
+        <md-input-container flex ="20" ng-hide="craCreate.selectedYear == undefined">
+            <label>Month</label>
+            <md-select ng-model="craCreate.selectedMonth" md-selected-text="craCreate.getSelectedText(craCreate.selectedMonth)">
+                <md-optgroup label="Month">
+                    <md-option ng-repeat="month in craCreate.months" ng-value="month" >
+                        {{month}}
+                    </md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+
+        <div flex="20" ng-hide="craCreate.selectedMonth == undefined">
+            <md-button class="md-raised md-primary" ng-click="craCreate.updateYearMonth(craCreate.selectedYear,craCreate.selectedMonth)">Valider</md-button>
+        </div>
+
+</md-card>
+
+<div ng-hide="craCreate.loadCraDetail == false" flex="90">
+    <crainfo craProvider="craCreate.selectedUser" initcra="craCreate.initcra" activities="craCreate.activitiesHeader" status="craCreate.status"
+             days="craCreate.days">
+
+    </crainfo>
+</div>
+

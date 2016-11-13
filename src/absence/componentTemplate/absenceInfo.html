@@ -1,0 +1,37 @@
+
+<div  layout="column" ng-cloak="" class="md-inline-form ">
+
+        <md-content layout-padding="">
+            <div>
+                <form name="absenceForm" ng-submit="$ctrl.submit()">
+                    <div layout-gt-sm="row">
+                        <md-input-container flex-gt-sm="">
+                            <label>Start time</label>
+                            <md-datepicker ng-model="$ctrl.absence.starttime"></md-datepicker>
+                        </md-input-container>
+
+                        <md-input-container flex-gt-sm="">
+                            <label>End time</label>
+                            <md-datepicker ng-model="$ctrl.absence.endtime"></md-datepicker>
+                        </md-input-container>
+                    </div>
+
+
+                    <div layout-gt-sm="row" >
+                        <md-input-container >
+                            <label>Comments</label>
+                            <textarea ng-model="$ctrl.absence.description" columns="5" md-maxlength="150"></textarea>
+                        </md-input-container>
+                    </div>
+
+                    <div>
+                        <md-button class="md-raised md-primary"  type="submit">submit</md-button>
+                    </div>
+                </form>
+            </div>
+        </md-content>
+
+</div>
+
+<div class="loading" ng-show="$ctrl.isloading">Loading&#8230;</div>
+

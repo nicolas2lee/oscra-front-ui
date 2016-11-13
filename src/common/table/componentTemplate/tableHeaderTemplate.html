@@ -1,0 +1,13 @@
+
+<tr class="md-table-headers-row" >
+    <th ng-repeat="h in $ctrl.headers " class="md-table-header" >
+        <a ui-sref=" {{$ctrl.listurl}} " ng-if="$ctrl.handleSort(h.field) &amp;&amp; h.field != 'action' &amp;&amp; h.field != 'id'" ng-click="reverse=!reverse;$ctrl.order(h.field,reverse)">
+            {{h.name}}
+            <i ng-show="reverse &amp;&amp; h.field == predicate" class="material-icons">arrow_upward</i>
+            <i ng-show="!reverse &amp;&amp; h.field == predicate" class="material-icons">arrow_downward</i>
+        </a>
+        <span ng-if="!$ctrl.handleSort(h.field) &amp;&amp; h.field != 'action' &amp;&amp; h.field != 'id' ">{{h.name}}</span>
+        <span ng-if="h.field == 'action'"></span>
+    </th>
+    <th class="md-table-header"></th>
+</tr>

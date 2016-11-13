@@ -1,0 +1,10 @@
+
+<div ng-if="craModify.needLoadData !=0 ">
+loading
+</div>
+<div ng-if="craModify.needLoadData == 0">
+    <crainfo craProvider="craModify.craprovider" initcra="craModify.initcra"  activities="craModify.activitiesHeader" status="craModify.statusHeader"
+            days="craModify.days">
+    </crainfo>
+</div>
+

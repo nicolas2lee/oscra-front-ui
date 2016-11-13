@@ -1,0 +1,37 @@
+
+
+<div layout='column'>
+    <md-card  class="md-padding">
+        <h2>Liste de Compte-Rendu d'Activités</h2>
+        <md-toolbar class="md-tall" layout='column'>
+
+            <span flex></span>
+            <div class="md-toolbar-tools">
+                <div layout="row" flex="flex" class="fill-height">
+                    <div ng-hide="craList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                        <span ng-click="craList.toggleSearch = !craList.toggleSearch">Angular Material Table</span>
+                    </div>
+                    <span flex="flex" ng-hide="userList.toggleSearch"></span>
+                    <md-input-container flex="flex" style="padding-left:88px;" ng-show="craList.toggleSearch">
+                        <input id="searchinput" type="text" ng-model="search" show-focus="craList.toggleSearch"/>
+                    </md-input-container>
+
+                    <div layout="row" class="md-toolbar-item md-tools">
+                        <a ui-sref="root.craall" ng-click="craList.toggleSearch = !craList.toggleSearch" class="md-button md-default-theme">
+                            <i class="material-icons">search</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </md-toolbar>
+
+        <md-content layout="column" ng-click="craList.toggleSearch=false">
+            <md-crud-table currentpage="craList.currentpage" headers="craList.headers" content="craList.content" sortable="craList.sortable"
+                            custom-class="craList.custom"  count="craList.count" filters="search"
+                            listurl="root.cralist"  modifyurl="root.cramodify" deleteurl="root.cradelete" idkey="craId">
+            </md-crud-table>
+        </md-content>
+    </md-card>
+</div>
+
+

@@ -1,0 +1,37 @@
+
+<div layout='column'>
+    <md-card  class="md-padding">
+        <h2>Liste de Congé</h2>
+        <md-toolbar class="md-tall" layout='column'>
+
+            <span flex></span>
+            <div class="md-toolbar-tools">
+                <div layout="row" flex="flex" class="fill-height">
+                    <md-button  id="absence-crud-table-fixed-button" ui-sref="root.absencecreate" class="md-fab md-accent">+</md-button>
+                    <div ng-hide="absenceList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                        <span ng-click="absenceList.toggleSearch = !absenceList.toggleSearch">Angular Material Table</span>
+                    </div>
+                    <span flex="flex" ng-hide="absenceList.toggleSearch"></span>
+                    <md-input-container flex="flex" style="padding-left:88px;" ng-show="absenceList.toggleSearch">
+                        <input id="searchinput" type="text" ng-model="search" show-focus="absenceList.toggleSearch"/>
+                    </md-input-container>
+
+                    <div layout="row" class="md-toolbar-item md-tools">
+                        <a ui-sref="root.userall" ng-click="absenceList.toggleSearch = !absenceList.toggleSearch" class="md-button md-default-theme">
+                            <i class="material-icons">search</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </md-toolbar>
+
+        <md-content layout="column" ng-click="absenceList.toggleSearch=false">
+            <md-crud-table currentpage="absenceList.currentpage" headers="absenceList.headers" content="absenceList.content" sortable="absenceList.sortable"
+                           filters="search" custom-class="absenceList.custom"  count="absenceList.count"
+                           listurl="root.absencelist" modifyurl="root.absencemodify"  idkey="absenceId" >
+
+            </md-crud-table>
+        </md-content>
+    </md-card>
+</div>
+

@@ -1,0 +1,29 @@
+
+
+<div class="main-fab">
+    <md-button   id="simple-table-fixed-button" class="md-fab md-accent" ng-click="$ctrl.addNewElement($event)">+</md-button>
+</div>
+
+<table md-colresize="md-colresize mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" class="md-table">
+    <tr class="md-table-headers-row">
+        <th class="md-table-header"  ng-repeat="header in $ctrl.headers">
+            {{header.name}}
+        </th>
+    </tr>
+    <tbody>
+        <tr ng-repeat="c in $ctrl.content" class="md-table-content-row">
+            <td ng-repeat="h in $ctrl.headers" ng-if="h.field != 'action' " class="md-table-content"
+                ng-init=" f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field] ">
+                {{f}}
+            </td>
+
+            <td ng-repeat="h in $ctrl.headers"  ng-if="h.field == 'action'" class="md-table-content" >
+                <i class="material-icons" ng-click="$ctrl.modifyElement(c,$event)">mode_edit</i>
+                <i class="material-icons" ng-click="$ctrl.openOffscreenConfirm(c,$event)">delete_forever</i>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<style>
+
+</style>

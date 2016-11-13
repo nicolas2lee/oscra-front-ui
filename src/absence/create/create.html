@@ -1,0 +1,38 @@
+<div ng-if="absenceCreate.needLoadData !=0 ">
+    loading
+</div>
+
+
+<div flex-xs="" flex-gt-xs="10" layout="column" ng-if="absenceCreate.needLoadData == 0 ">
+    <md-card  class="md-padding">
+        <h2>Créer un congé</h2>
+
+        <div layout="row" >
+            <md-input-container  >
+                <label>User</label>
+                <md-select ng-model="absenceCreate.selectedUser" md-selected-text="absenceCreate.getSelectedText(absenceCreate.selectedUser.firstName+' '+absenceCreate.selectedUser.lastName)">
+                    <md-optgroup label="user">
+                        <md-option ng-repeat="user in absenceCreate.users" ng-value="user" >
+                            {{user.firstName}} {{user.lastName}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+
+            <div  ng-hide="absenceCreate.selectedUser == undefined">
+                <md-button class="md-raised md-primary" ng-click="absenceCreate.updateSelectedUser(absenceCreate.selectedUser)">Valider</md-button>
+            </div>
+        </div>
+
+
+        <div ng-hide="absenceCreate.loadAbsenceDetail == false" flex="60">
+            <absenceinfo absence="absenceCreate.initabsence"></absenceinfo>
+        </div>
+    </md-card>
+</div>
+
+
+
+
+
+

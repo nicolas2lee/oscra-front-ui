@@ -1,0 +1,42 @@
+
+<div id="md-table-template" >
+    <table md-colresize="md-colresize mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" class="md-table">
+        <thead ng-include="'./common/table/componentTemplate/tableHeaderTemplate.html'">
+
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="c in $ctrl.content | filter:$ctrl.filters | startFrom:$ctrl.tablePage*$ctrl.count | limitTo: $ctrl.count" class="md-table-content-row">
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
+                ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
+                    {{f}}
+                    <!--a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
+                    </a-->
+
+                </td>
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
+                    {{(h.field.indexOf('date') > 0) ?  $filter('date')(c[h.field])  : c[h.field];}}
+                </td>
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'action'" class="md-table-content" layout="row">
+                    <div ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
+                        ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
+                        <a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+                        <i class="material-icons" ng-click="$ctrl.openOffscreenConfirm(c,$event)">delete_forever</i>
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <md-button  class="" ng-click="$ctrl.loadMore()">lazy loading</md-button>
+    <div layout="row" class="md-table-footer" ng-include="'./common/table/componentTemplate/tableFooterTemplate.html'">
+
+    </div>
+</div>
+
+
+
+
+

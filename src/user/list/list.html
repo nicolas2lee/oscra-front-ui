@@ -1,0 +1,39 @@
+
+
+<div layout='column' >
+    <md-card  class="md-padding">
+        <h2>Liste d'employée</h2>
+        <md-card-content >
+            <md-toolbar class="md-tall" >
+                <span flex></span>
+                <div class="md-toolbar-tools">
+                    <div layout="row" flex="flex" class="fill-height">
+                        <md-button  id="user-crud-table-fixed-button" ui-sref="root.usercreate" class="md-fab md-accent ">+</md-button>
+                        <div ng-hide="userList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                            <span ng-click="userList.toggleSearch = !userList.toggleSearch">Angular Material Table</span>
+                        </div>
+                        <span flex="flex" ng-hide="userList.toggleSearch"></span>
+                        <md-input-container flex="flex" style="padding-left:88px;" ng-show="userList.toggleSearch">
+                            <input id="searchinput" type="text" ng-model="search" show-focus="userList.toggleSearch"/>
+                        </md-input-container>
+
+                        <div layout="row" class="md-toolbar-item md-tools">
+                            <a ui-sref="root.userall" ng-click="userList.toggleSearch = !userList.toggleSearch" class="md-button md-default-theme">
+                                <i class="material-icons">search</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </md-toolbar>
+
+            <md-content layout="column" ng-click="userList.toggleSearch=false">
+                <md-crud-table currentpage="userList.currentpage" headers="userList.headers" content="userList.content" sortable="userList.sortable"
+                          filters="search" custom-class="userList.custom"  count="userList.count"
+                            listurl="root.userall" modifyurl="root.usermodify" idkey="userId" >
+
+                </md-crud-table>
+            </md-content>
+        </md-card-content>
+    </md-card>
+</div>
+

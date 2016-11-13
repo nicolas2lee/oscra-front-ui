@@ -1,0 +1,33 @@
+<!--http://demo.geekslabs.com/materialize/v2.2/layout03/-->
+
+
+<md-dialog >
+    <form ng-cloak ng-submit="signinCtrl.signin()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Login</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div layout="row">
+                <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Identifiant</label>
+                    <input ng-model="signinCtrl.username">
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Mot de passe</label>
+                    <input ng-model="signinCtrl.password">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <div>
+                <md-button class="md-raised md-primary"  type="submit">submit</md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
