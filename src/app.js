@@ -7,15 +7,12 @@ require('angular-animate');
 require('angular-aria');
 require('angular-material');
 
-
 require('./util/api');
-
 
 var app = angular.module('oscra-ui',
     ['ui.router','ngMaterial',
-        'oscra-ui.util',  'oscra-ui.table', //'oscra-ui.layout',
-        'oscra-ui.user', 'oscra-ui.cra', 'oscra-ui.setting',
-        'oscra-ui.absence']);
+        'oscra-ui.cra', 'oscra-ui.util', 'oscra-ui.activitytype',
+        'oscra-ui.table', 'oscra-ui.absence']);
 
 
 require('./../assets/css/commonCrudTable.css');
@@ -24,11 +21,9 @@ require('./../assets/css/headbar.css');
 require('./../node_modules/angular-material/angular-material.css');
 require('./../assets/css/headbar.css');
 
-//require('./layout/layout.module');
-require('./common/table/table.module');
-require('./user/user.module');
 require('./cra/cra.module');
-require('./setting/setting.module');
+require('./common/table/table.module');
+require('./activitytype/activitytype.module');
 require('./absence/absence.module');
 
 app.config(function($mdThemingProvider) {

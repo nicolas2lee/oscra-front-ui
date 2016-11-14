@@ -1,2 +1,2 @@
 require('./mdCrudTable.component')
-require('./mdSimpleTable.component')
+//require('./mdSimpleTable.component')

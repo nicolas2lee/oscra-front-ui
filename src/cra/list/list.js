@@ -36,7 +36,8 @@ module.exports = function controller(CraService, ActivityService, $scope){
     }
 
     function getAllCras(){
-        CraService.fakelist(vm.currentpage, function(response){
+        var myuserid=1;
+        CraService.mylist(myuserid, function(response){
             var rawcra = response.data;
             var finalcra=[];
             for (var i=0;i<rawcra.length;i++){

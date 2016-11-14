@@ -11,4 +11,5 @@ var server = new WebpackDevServer(compiler, {
         }
     }
 });
-server.listen(8000);
+/*In order to avoid conflict with back-office*/
+server.listen(8090);

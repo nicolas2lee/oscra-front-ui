@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oscra-ui.cra', ['oscra-ui.user','oscra-ui.table'])
+angular.module('oscra-ui.cra', ['oscra-ui.table', 'oscra-ui.activitytype'])
 
 require('./cra.router');
 require('./cra.service');
