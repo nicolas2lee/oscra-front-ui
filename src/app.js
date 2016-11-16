@@ -11,8 +11,8 @@ require('./util/api');
 
 var app = angular.module('oscra-ui',
     ['ui.router','ngMaterial',
-        'oscra-ui.cra', 'oscra-ui.util', 'oscra-ui.activitytype',
-        'oscra-ui.table', 'oscra-ui.absence']);
+        'oscra-ui.cra',   'oscra-ui.util',    'oscra-ui.activitytype',
+        'oscra-ui.table', 'oscra-ui.absence', 'oscra-ui.login']);
 
 
 require('./../assets/css/commonCrudTable.css');
@@ -25,6 +25,7 @@ require('./cra/cra.module');
 require('./common/table/table.module');
 require('./activitytype/activitytype.module');
 require('./absence/absence.module');
+require('./login/login.module');
 
 app.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('altTheme')
@@ -78,7 +79,7 @@ app.config(function($mdThemingProvider) {
                     }
                 }
             })
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/dashboard');
     });
 
 

@@ -1,33 +1,43 @@
 <!--http://demo.geekslabs.com/materialize/v2.2/layout03/-->
 
 
-<md-dialog >
-    <form ng-cloak ng-submit="signinCtrl.signin()">
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Login</h2>
-            </div>
-        </md-toolbar>
+<md-dialog flex="30">
+    <md-dialog-content >
+        <form ng-cloak ng-submit="signinCtrl.signin(user)" layout="column">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Login</h2>
+                </div>
+            </md-toolbar>
 
-        <md-dialog-content>
-            <div layout="row">
-                <md-input-container class="md-block" flex-gt-sm="">
-                    <label>Identifiant</label>
-                    <input ng-model="signinCtrl.username">
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container class="md-block" flex-gt-sm="">
-                    <label>Mot de passe</label>
-                    <input ng-model="signinCtrl.password">
-                </md-input-container>
-            </div>
-        </md-dialog-content>
 
-        <md-dialog-actions layout="row">
-            <div>
-                <md-button class="md-raised md-primary"  type="submit">submit</md-button>
-            </div>
-        </md-dialog-actions>
-    </form>
+            <md-whiteframe  layout-padding >
+                <md-content md-theme="docs-dark" layout="column">
+                    <md-input-container>
+                        <label>Email</label>
+                        <input ng-model="user.email" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+                        <div ng-messages="email.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Password</label>
+                        <input ng-model="user.password" type="password" required >
+                    </md-input-container>
+
+                    <md-input-container layout-align="center center">
+                        <div layout="row" layout-sm="column" layout-margin>
+                            <md-button class="md-raised"  type="submit">Login</md-button>
+                            <md-button class="md-raised md-primary" >Register</md-button>
+                        </div>
+                    </md-input-container>
+                </md-content>
+            </md-whiteframe>
+        </form>
+    </md-dialog-content>
 </md-dialog>
+
