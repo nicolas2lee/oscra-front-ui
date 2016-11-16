@@ -18,12 +18,13 @@ module.exports = function controller(AbsenceService, $scope){
         vm.headers = [{name:'Id', field:'id'},
             {name: 'Début', field:'starttime'},
             {name: 'Fin', field:'endtime'},
-            {name: 'Statut', field: 'statut'},
+            {name: 'Statut', field: 'status'},
             {name: 'Provider', field: 'provider'},
             {name: 'Validator', field:'validator'},
             {name: 'LastModifyBy', field:'lastModifyBy'},
             {name: 'Action', field: 'action'}];
         AbsenceService.mylist(vm.currentpage, vm.currentUserId, function (response) {
+
             var absences = adaptToHeaders(response.data);
             console.log(absences)
             vm.content = absences;

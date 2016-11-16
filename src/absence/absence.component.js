@@ -10,6 +10,7 @@ angular.module('oscra-ui.absence').component('absenceinfo', {
         var vm=this;
         vm.isloading = false;
         vm.submit = function(){
+            vm.absence.status='TO_VALIDATE'
             console.log(vm.absence)
             vm.isloading = true;
             $scope.$emit('sendAbsence', vm.absence);
