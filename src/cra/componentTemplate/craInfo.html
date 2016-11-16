@@ -1,9 +1,11 @@
+<div class="loading" ng-show="$ctrl.isloading">Loading&#8230;</div>
+
 <md-content class="" layout-xs="column" layout="column" >
         <div flex-xs="" flex-gt-xs="20" layout="row">
             <md-card flex="60">
                 <md-card-title>
                     <md-card-title-text layout="row">
-                        <span class="md-headline" >Information d'utlisateur</span>
+                        <span class="md-headline" >Mes Informations</span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
@@ -122,45 +124,24 @@
         </div>
 
         <div flex-xs="" flex-gt-xs="20" layout="row">
+
             <md-card flex="70">
                 <md-card-content layout="row" layout-align="space-between">
-                    <md-input-container flex="30">
-                        <label>Status</label>
-                        <md-select ng-model="$ctrl.initcra.status" md-selected-text="$ctrl.getSelectedText($ctrl.initcra.status)">
-                            <md-optgroup label="Status">
-                                <md-option ng-repeat="status in $ctrl.status" ng-value="status" >
-                                    <div ng-switch="status">
-                                        <div ng-switch-when="NOT_TRANSIMITTED">
-                                            Le CRA n'a été pas envoyé.
-                                        </div>
-                                        <div ng-switch-when="TRANSIMITTED_NOT_VALIDATED">
-                                            Le CRA a été envoyé, mais il n'est pas encore validé.
-                                        </div>
-                                        <div ng-switch-when="VALIDATED_TRANSIMITTED">
-                                            Le CRA a été envoyé, et il a été validé.
-                                        </div>
-                                    </div>
-                                </md-option>
-                            </md-optgroup>
-                        </md-select>
-                    </md-input-container>
                     <md-input-container flex>
                         <label>Comments</label>
                         <textarea ng-model="$ctrl.initcra.description" columns="2" md-maxlength="150"></textarea>
                     </md-input-container>
-
                 </md-card-content>
             </md-card>
             <md-card flex="30">
-                <md-card-content layout="row" layout-align="space-between">
-                    <div layout="column">
+                <md-card-content layout="column" layout-align="space-between">
+                        <md-button class="md-raised md-primary" ng-click="$ctrl.saveAsDraft()">Enregistrer en tant que brouillon</md-button>
                         <md-button class="md-raised md-primary" ng-click="$ctrl.submit()">Valider</md-button>
-                    </div>
                 </md-card-content>
             </md-card>
         </div>
 </md-content>
 
-<div class="loading" ng-show="$ctrl.isloading">Loading&#8230;</div>
+
 
 

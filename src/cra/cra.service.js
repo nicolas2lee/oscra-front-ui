@@ -6,6 +6,7 @@ angular.module('oscra-ui.cra')
 function craService(API){
     var CRAS = 'cras/';
 
+
     function mylist(providerId, callBack) {
         API.get(CRAS+'user/all?providerId='+providerId, null, callBack);
     }

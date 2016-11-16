@@ -10,9 +10,6 @@
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
                 ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
                     {{f}}
-                    <!--a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
-                    </a-->
-
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
                     {{(h.field.indexOf('date') > 0) ?  $filter('date')(c[h.field])  : c[h.field];}}

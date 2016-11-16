@@ -12,7 +12,7 @@ require('./util/api');
 var app = angular.module('oscra-ui',
     ['ui.router','ngMaterial',
         'oscra-ui.cra',   'oscra-ui.util',    'oscra-ui.activitytype',
-        'oscra-ui.table', 'oscra-ui.absence', 'oscra-ui.login']);
+        'oscra-ui.table', 'oscra-ui.absence', 'oscra-ui.login', 'oscra-ui.user']);
 
 
 require('./../assets/css/commonCrudTable.css');
@@ -22,6 +22,7 @@ require('./../node_modules/angular-material/angular-material.css');
 require('./../assets/css/headbar.css');
 
 require('./cra/cra.module');
+require('./user/user.module');
 require('./common/table/table.module');
 require('./activitytype/activitytype.module');
 require('./absence/absence.module');

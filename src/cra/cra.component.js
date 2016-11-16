@@ -17,7 +17,18 @@ angular.module('oscra-ui.cra').component('crainfo', {
         vm.chooseDay = chooseDay;
 
         vm.getSelectedText = getSelectedText;
+
+        vm.saveAsDraft = saveAsDraft;
         vm.submit = submit;
+
+        function saveAsDraft(){
+            var persistActivities=handleActivities();
+            vm.initcra['activities']=persistActivities;
+            vm.initcra['status']='NOT_TRANSIMITTED';
+            if (checkTotal()){
+                $scope.$emit('sendCra', vm.initcra);
+            }
+        }
 
         function getSelectedText(element) {
             if (element !== undefined) {
@@ -114,6 +125,7 @@ angular.module('oscra-ui.cra').component('crainfo', {
        function submit(){
             var persistActivities=handleActivities();
             vm.initcra['activities']=persistActivities;
+            vm.initcra['status']='TRANSIMITTED_TO_VALIDATE';
             if (checkTotal()){
                 $scope.$emit('sendCra', vm.initcra);
             }

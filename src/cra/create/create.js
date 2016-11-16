@@ -1,21 +1,26 @@
 'use strict';
 
-module.exports = function controller(ActivityTypeService, UserService, CraService, $scope){
+module.exports = function controller(ActivityTypeService, UserService, CraService, $scope, $state){
 
     var vm = this;
     vm.years =[];
     vm.months = [];
     vm.days=[];
+    vm.updateYearMonth = updateYearMonth;
     init();
 
     function init() {
         vm.needLoadData = 2;
         vm.loadCraDetail = false;
-        UserService.list(function (response) {
-            vm.users = response.data;
-            vm.needLoadData -= 1;
-        })
         vm.activitiesHeader=[];
+        vm.currentUserId = 1;
+        vm.status =[ 'NOT_TRANSIMITTED',
+            'TRANSIMITTED_NOT_VALIDATED',
+            'VALIDATED_TRANSIMITTED'];
+        UserService.findById(vm.currentUserId, function(response){
+            vm.currentUser=response.data;
+            vm.needLoadData-=1;
+        })
         ActivityTypeService.list(function(response){
             var activityTypes = response.data;
             for (var i=0; i<activityTypes.length;i++){
@@ -23,9 +28,7 @@ module.exports = function controller(ActivityTypeService, UserService, CraServic
             }
             vm.needLoadData-=1;
         })
-        vm.status =[ 'NOT_TRANSIMITTED',
-            'TRANSIMITTED_NOT_VALIDATED',
-            'VALIDATED_TRANSIMITTED'];
+
         var yearBase = 2016;
         vm.years=getYears(getOffset(yearBase),getRange(yearBase))
         initMonth();
@@ -41,19 +44,18 @@ module.exports = function controller(ActivityTypeService, UserService, CraServic
         }
     }
 
-    vm.updateYearMonth = function(month, year){
-        //vm.days = getDaysInMonth(month-1, year);
+     function updateYearMonth(month, year){
         vm.loadCraDetail = true;
         vm.initcra={
             provider: "admin",
             status: 'NOT_TRANSIMITTED',
-            month: vm.selectedYear+'-'+vm.selectedMonth
+            month: new Date(vm.selectedYear, vm.selectedMonth)//vm.selectedYear+'-'+vm.selectedMonth
         };
+        console.log(vm.initcra.month);
         vm.days = getDaysInMonth(vm.selectedMonth-1, vm.selectedYear);
     }
 
     vm.getSelectedText = function(element) {
-        //console.log('elem ' +element)
         if (element !== undefined) {
             return element;
         } else {
@@ -92,9 +94,7 @@ module.exports = function controller(ActivityTypeService, UserService, CraServic
     }
 
     $scope.$on('sendCra', function(event,cra){
-        console.log('cra in creation : '+cra );
-        console.log(cra);
-        var providerId = vm.selectedUser.id;
+        var providerId = vm.currentUser.id;
         var validatorId = 2;
         var lastModifyUserId = 2;
         delete cra["provider"];
@@ -105,7 +105,7 @@ module.exports = function controller(ActivityTypeService, UserService, CraServic
             console.log(response.data)
             if (response.status ==200){
 
-               // $state.go('root.cralist');
+                $state.go('root.cralist');
             }else{
                 alert('System internal error');
             }
