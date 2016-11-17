@@ -36,10 +36,10 @@ angular.module('oscra-ui.cra').component('crainfo', {
             } else {
                 return "Choisir un element";
             }
-        };
+        }
 
         function addActivity(activity){
-            console.log('entering add activity')
+            console.log('entering add activity');
             if (checkActivity(activity)){
                 vm.craActivities.unshift(activity);
                 var actcount=[]

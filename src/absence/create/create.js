@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(AbsenceService, $scope, $state){
+module.exports = function controller(AbsenceService, ActivityTypeService, $scope, $state){
 
     var vm = this;
     vm.currentUserId = 1;
@@ -8,7 +8,11 @@ module.exports = function controller(AbsenceService, $scope, $state){
     init();
 
     function init(){
-
+        var category = 'conge';
+        ActivityTypeService.listCategoryAbsence(category,function(response){
+            console.log(response.data)
+            vm.absencetypes = response.data;
+        });
     }
 
 

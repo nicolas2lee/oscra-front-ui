@@ -9,6 +9,9 @@ function service(API){
         API.get(ABSENCES+'user/fakeall?dstPage='+dstPage+'&providerId='+providerId, null, callBack);
     }
 
+    function listCategoryAbsence(category, callBack){
+        API.get(ACTIVITYTYPES+'/absence/all?category='+category, null, callBack);
+    }
 
     function create(absence, providerId, validatorId, lastModifyUserId, callBack) {
         API.post(ABSENCES+'add?providerId='+providerId+'&validatorId='+validatorId+'&lastModifyUserId='+lastModifyUserId, absence, callBack);
@@ -29,6 +32,7 @@ function service(API){
 
     return {
         mylist : mylist,
+        listCategoryAbsence: listCategoryAbsence,
         create : create,
         modify : modify,
         delete : remove,

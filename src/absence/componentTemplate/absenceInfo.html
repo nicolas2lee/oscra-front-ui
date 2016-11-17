@@ -16,8 +16,18 @@
                         </md-input-container>
                     </div>
 
-
                     <div layout-gt-sm="row" >
+                        <md-input-container>
+                            <label>Type de congé </label>
+                            <md-select ng-model="$ctrl.absence.category" md-selected-text="$ctrl.getSelectedText($ctrl.absence.category)">
+                                <md-optgroup label="absencetypes">
+                                    <md-option ng-repeat="absencetype in $ctrl.absencetypes" ng-value="absencetype" >
+                                        {{absencetype.name}}
+                                    </md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </md-input-container>
+
                         <md-input-container >
                             <label>Commentaire</label>
                             <textarea ng-model="$ctrl.absence.description" columns="5" md-maxlength="150"></textarea>
