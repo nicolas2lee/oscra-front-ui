@@ -28,7 +28,7 @@
 
         <md-content layout="column" ng-click="craList.toggleSearch=false">
             <md-crud-table currentpage="craList.currentpage" headers="craList.headers" content="craList.content" sortable="craList.sortable"
-                            custom-class="craList.custom"  count="craList.count" filters="search"
+                            custom-class="craList.custom"  count="craList.count" filters="search" lazyloading="false"
                             listurl="root.cralist"  modifyurl="root.cramodify" deleteurl="root.cradelete" idkey="craId">
             </md-crud-table>
         </md-content>

@@ -19,13 +19,11 @@ module.exports = function controller(CraService, ActivityService, $scope){
     function init(){
         vm.headers=[
             {name: 'Id', field:'id'},
-            {name: 'Month', field: 'month'},
-            {name: 'First Name', field: 'firstName'},
-            {name: 'Given Name', field: 'lastName'},
+            {name: 'Mois', field: 'month'},
             {name: 'Validation', field:'validation'},
-            {name: 'Status', field: 'status'},
-            {name: 'Last modified by', field: 'lastModifyBy'},
-            {name: 'Last updated time', field: 'Date'},
+            {name: 'Statut', field: 'status'},
+            {name: 'Mis à jour par', field: 'lastModifyBy'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'Action', field: 'action'}
         ];
         vm.sortable = ['id','month', 'validation','status','lastModifyBy','lastUpdatedTime'];
@@ -41,9 +39,16 @@ module.exports = function controller(CraService, ActivityService, $scope){
             var rawcra = response.data;
             var finalcra=[];
             for (var i=0;i<rawcra.length;i++){
+                var monthobj = new Date(rawcra[i].month);
+                var year = monthobj.getFullYear();
+                var month = monthobj.getMonth();
+                var updatedobj = new Date(rawcra[i].updated);
+                console.log(updatedobj)
                 var cradata ={
-                    "id": rawcra[i].id, "month": rawcra[i].month,"firstName":rawcra[i].provider.firstName,
-                    "lastName":rawcra[i].provider.lastName, "status":rawcra[i].status,"Date": (new Date(rawcra[i].updated)).toISOString(),
+                    "id": rawcra[i].id,
+                    "month": year+'-'+month,
+                    "status":rawcra[i].status,
+                    "updated": updatedobj.toLocaleDateString() +' '+updatedobj.toLocaleTimeString() ,
                     "lastModifyBy": rawcra[i].lastModifyUser.firstName+' '+rawcra[i].lastModifyUser.lastName
                 };
                 finalcra.push(cradata);
