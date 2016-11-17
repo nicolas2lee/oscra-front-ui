@@ -24,6 +24,8 @@ angular.module('oscra-ui.absence').component('absenceinfo', {
         })
 
         function getSelectedText(element) {
+            console.log('here is get sleceted text')
+            console.log(element)
             if (element !== undefined) {
                 return element.name;
             } else {
