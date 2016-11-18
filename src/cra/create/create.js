@@ -45,14 +45,14 @@ module.exports = function controller(ActivityTypeService, UserService, CraServic
     }
 
      function updateYearMonth(month, year){
-        vm.loadCraDetail = true;
         vm.initcra={
-            provider: "admin",
+            provider: vm.currentUser,
             status: 'NOT_TRANSIMITTED',
-            month: new Date(vm.selectedYear, vm.selectedMonth)//vm.selectedYear+'-'+vm.selectedMonth
+            month: new Date(vm.selectedYear, vm.selectedMonth-1),
+            activities: []
         };
-        console.log(vm.initcra.month);
         vm.days = getDaysInMonth(vm.selectedMonth-1, vm.selectedYear);
+         vm.loadCraDetail = true;
     }
 
     vm.getSelectedText = function(element) {

@@ -33,7 +33,7 @@
 
 </md-card>
 
-<div ng-hide="craCreate.loadCraDetail == false" flex="90">
+<div ng-if="craCreate.loadCraDetail == true" flex="90">
     <crainfo craProvider="craCreate.currentUser" initcra="craCreate.initcra" activities="craCreate.activitiesHeader" status="craCreate.status"
              days="craCreate.days">
 

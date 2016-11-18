@@ -10,11 +10,12 @@
                 </md-card-title>
                 <md-card-content>
                     <div layout="row">
+
                         <div flex="50">
                             <strong >Nom Prénom: </strong>{{$ctrl.craprovider.firstName}}&nbsp;&nbsp;&nbsp;{{$ctrl.craprovider.lastName}}
                         </div>
                         <div flex="50">
-                            <strong>Manager : </strong>{{$ctrl.initcra.validator.firstName}}{{$ctrl.initcra.validator.lastName}}
+                            <strong>Manager : </strong>{{$ctrl.craprovider.manager.firstName}}{{$ctrl.craprovider.manager.lastName}}
                         </div>
                     </div>
                     <div layout="row">
@@ -22,7 +23,7 @@
                             <strong>Email : </strong>{{$ctrl.craprovider.email}}
                         </div>
                         <div flex="50">
-                            <strong>Mobile : </strong>{{$ctrl.craprovider.phonenumber}}
+                            <strong>Mobile : </strong>{{$ctrl.craprovider.phoneNumber}}
                         </div>
                     </div>
                     <div layout="row">
@@ -41,18 +42,25 @@
                 <md-card-content>
                         <div layout="row" >
                             <div>
-                            <strong >Mois : </strong>{{ $ctrl.initcra.month }}
+                            <strong >Mois : </strong>{{ $ctrl.showMonth }}
                             </div>
                         </div>
+
                         <div layout="row" ng-switch="$ctrl.initcra.status">
                             <div ng-switch-when="NOT_TRANSIMITTED">
                                 <strong>Status : </strong>Le CRA n'a été pas envoyé.
                             </div>
-                            <div ng-switch-when="TRANSIMITTED_NOT_VALIDATED">
+                            <div ng-switch-when="TRANSIMITTED_TO_VALIDATE">
                                 <strong>Status : </strong>Le CRA a été envoyé, mais il n'est pas encore validé.
                             </div>
-                            <div ng-switch-when="VALIDATED_TRANSIMITTED">
-                                <strong>Status : </strong>Le CRA a été envoyé, et il a pas été validé.
+                            <div ng-switch-when="TRANSIMITTED_AGREED">
+                                <strong>Status : </strong>Le CRA a été envoyé, et il a été approuvé.
+                            </div>
+                            <div ng-switch-when="TRANSIMITTED_REFUSED">
+                                <strong>Status : </strong>Le CRA a été envoyé, et il a été refusé.
+                            </div>
+                            <div ng-switch-default>
+                                <strong>Status : </strong>System error
                             </div>
                         </div>
                 </md-card-content>

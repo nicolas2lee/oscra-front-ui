@@ -60,7 +60,7 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             console.log(response.data)
             if (response.status ==200){
 
-               // $state.go('root.cralist');
+               $state.go('root.cralist');
             }else{
                 alert('System internal error');
             }

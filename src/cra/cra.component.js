@@ -24,8 +24,8 @@ angular.module('oscra-ui.cra').component('crainfo', {
         function saveAsDraft(){
             var persistActivities=handleActivities();
             vm.initcra['activities']=persistActivities;
-            vm.initcra['status']='NOT_TRANSIMITTED';
             if (checkTotal()){
+                vm.initcra['status']='NOT_TRANSIMITTED';
                 $scope.$emit('sendCra', vm.initcra);
             }
         }
@@ -63,6 +63,8 @@ angular.module('oscra-ui.cra').component('crainfo', {
         }
 
         function init(){
+            var monthobj=new Date(vm.initcra.month);
+            vm.showMonth = monthobj.getFullYear() + '-' + (monthobj.getMonth()+1);
             // add total
             vm.craActivities = [];
             vm.clickcount=[];
@@ -84,6 +86,7 @@ angular.module('oscra-ui.cra').component('crainfo', {
             })
             vm.craActivities.push('Total');
             vm.clickcount['Total']=clearMonthDayCounter();
+            //vm.clickcount['Total']=countTotal();
         }
 
         function mergeCounter(src, aname){
@@ -91,6 +94,17 @@ angular.module('oscra-ui.cra').component('crainfo', {
                 vm.clickcount[aname][i]+=src[i];
             }
         }
+        
+        function countTotal() {
+            vm.craActivities.forEach(function (activityname) {
+                if (activityname != 'Total') {
+                    for (var i=0; i<activityname.length;i++){
+                        vm.clickcount['Total'][i]+=vm.clickcount[activityname][i]
+                    }
+                }
+            })
+        }
+
 
         function clearMonthDayCounter(){
             var daycounter=[];
@@ -125,8 +139,8 @@ angular.module('oscra-ui.cra').component('crainfo', {
        function submit(){
             var persistActivities=handleActivities();
             vm.initcra['activities']=persistActivities;
-            vm.initcra['status']='TRANSIMITTED_TO_VALIDATE';
             if (checkTotal()){
+                vm.initcra['status']='TRANSIMITTED_TO_VALIDATE';
                 $scope.$emit('sendCra', vm.initcra);
             }
        }
@@ -187,7 +201,7 @@ angular.module('oscra-ui.cra').component('crainfo', {
                                 isStarted = true;
                                 starttime = vm.days[i].getDate();
                                 break;
-                        };
+                        }
                         break;
                     case true:
                         switch(actcount[vm.days[i].getDate()-1]){
@@ -202,9 +216,9 @@ angular.module('oscra-ui.cra').component('crainfo', {
                                 break;
                             case 2://0.5 pm
                                 break;
-                        };
+                        }
                         break;
-                };
+                }
             }
             return allactions;
         }

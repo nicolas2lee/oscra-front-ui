@@ -43,7 +43,6 @@ module.exports = function controller(CraService, ActivityService, $scope){
                 var year = monthobj.getFullYear();
                 var month = monthobj.getMonth();
                 var updatedobj = new Date(rawcra[i].updated);
-                console.log(updatedobj)
                 var cradata ={
                     "id": rawcra[i].id,
                     "month": year+'-'+month,
