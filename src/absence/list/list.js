@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(AbsenceService, $scope){
+module.exports = function controller(AbsenceService, LoginService, $scope){
 
     var vm = this;
     vm.content=[];
@@ -8,8 +8,7 @@ module.exports = function controller(AbsenceService, $scope){
     vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
     vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
     vm.count = 5;
-    vm.currentUserId=1;
-
+    vm.currentUserId = 1;
     init();
 
     function init() {
@@ -67,7 +66,6 @@ module.exports = function controller(AbsenceService, $scope){
         AbsenceService.mylist(vm.currentpage, vm.currentUserId, function (response) {
             var absences = adaptToHeaders(response.data);
             vm.content.splice.apply(vm.content, [vm.content.length, 0].concat(absences))
-
         })
     })
 

@@ -40,12 +40,10 @@ module.exports = function controller(CraService, ActivityService, $scope){
             var finalcra=[];
             for (var i=0;i<rawcra.length;i++){
                 var monthobj = new Date(rawcra[i].month);
-                var year = monthobj.getFullYear();
-                var month = monthobj.getMonth();
                 var updatedobj = new Date(rawcra[i].updated);
                 var cradata ={
                     "id": rawcra[i].id,
-                    "month": year+'-'+month,
+                    "month": monthobj.getFullYear() +'-' + (monthobj.getMonth()+1),
                     "status":rawcra[i].status,
                     "updated": updatedobj.toLocaleDateString() +' '+updatedobj.toLocaleTimeString() ,
                     "lastModifyBy": rawcra[i].lastModifyUser.firstName+' '+rawcra[i].lastModifyUser.lastName

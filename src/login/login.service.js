@@ -7,7 +7,6 @@ function service(API){
         API.get('login?username='+username+'&passwors='+password, null, callBack);
     }
 
-
     return {
         signin : signin
     }

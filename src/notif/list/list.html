@@ -1,0 +1,76 @@
+<div ng-if="notifList.initcranotifloaded !== true && notifList.initabsencenotifloaded !== true">
+    loading
+</div>
+
+<div layout='column' >
+    <div  ng-if="notifList.initcranotifloaded === true">
+        <md-card  class="md-padding" >
+            <h2>Liste des notifications du CRA</h2>
+            <md-card-content >
+                <md-toolbar class="md-tall" >
+                    <span flex></span>
+                    <div class="md-toolbar-tools">
+                        <div layout="row" flex="flex" class="fill-height">
+                            <div ng-hide="notifList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                                <span ng-click="notifList.toggleSearch = !notifList.toggleSearch">Angular Material Table</span>
+                            </div>
+                            <span flex="flex" ng-hide="notifList.toggleSearch"></span>
+                            <md-input-container flex="flex" style="padding-left:88px;" ng-show="notifList.toggleSearch">
+                                <input  type="text" ng-model="search" show-focus="notifList.toggleSearch"/>
+                            </md-input-container>
+
+                            <div layout="row" class="md-toolbar-item md-tools">
+                                <a ui-sref="root.userall" ng-click="notifList.toggleSearch = !notifList.toggleSearch" class="md-button md-default-theme">
+                                    <i class="material-icons">search</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </md-toolbar>
+
+                <md-content layout="column" ng-click="notifList.toggleSearch=false" >
+                    <md-crud-table-without-pagination  headers="notifList.cranotifHeaders" content="notifList.cranotifContent" sortable="notifList.cranotifSortable"
+                                   filters="search" custom-class="notifList.custom" currentpage="notifList.cranotifcCurrentpage"
+                                   listurl="root.notifall" modifyurl="root.cramodify" idkey="craId" >
+                    </md-crud-table-without-pagination>
+                </md-content>
+            </md-card-content>
+        </md-card>
+
+        <div  ng-if="notifList.initabsencenotifloaded === true">
+            <md-card  class="md-padding" >
+                <h2>Liste des notifications du Absence</h2>
+                <md-card-content >
+                    <md-toolbar class="md-tall" >
+                        <span flex></span>
+                        <div class="md-toolbar-tools">
+                            <div layout="row" flex="flex" class="fill-height">
+                                <div ng-hide="notifList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                                    <span ng-click="notifList.toggleSearch = !notifList.toggleSearch">Angular Material Table</span>
+                                </div>
+                                <span flex="flex" ng-hide="notifList.toggleSearch"></span>
+                                <md-input-container flex="flex" style="padding-left:88px;" ng-show="notifList.toggleSearch">
+                                    <input type="text" ng-model="search" show-focus="notifList.toggleSearch"/>
+                                </md-input-container>
+
+                                <div layout="row" class="md-toolbar-item md-tools">
+                                    <a ui-sref="root.userall" ng-click="notifList.toggleSearch = !notifList.toggleSearch" class="md-button md-default-theme">
+                                        <i class="material-icons">search</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </md-toolbar>
+
+                    <md-content layout="column" ng-click="notifList.toggleSearch=false" >
+                        <md-crud-table-without-pagination  headers="notifList.absencenotifHeaders" content="notifList.absencenotifContent" sortable="notifList.absencenotifSortable"
+                                                           filters="search" custom-class="notifList.custom" currentpage="notifList.absencenotifCurrentpage"
+                                                           listurl="root.notifall" modifyurl="root.absencemodify" idkey="absenceId" >
+
+                        </md-crud-table-without-pagination>
+                    </md-content>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</div>
