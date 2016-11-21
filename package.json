@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "oscra front ui",
   "scripts": {
-    "postinstall": "npm install webpack",
+    "postinstall": "npm install ",
     "start": "node ./serve.js"
   },
   "repository": {
