@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "oscra front ui",
   "scripts": {
-    "prod": "NODE_ENV=production node server.js",
-    "postinstall": "webpack -p",
-    "start": "node ./serve.js"
+    "build": "webpack --config ./webpack.config.js --progress --colors",
+    "start": "node ./serve.js",
+
+
 
   },
   "repository": {
