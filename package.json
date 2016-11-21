@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "oscra front ui",
   "scripts": {
-    "test": "test",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
+    //"test": "test",
+    "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors",
     "start": "node ./serve.js"
   },
   "repository": {
