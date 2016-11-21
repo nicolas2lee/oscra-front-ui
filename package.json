@@ -4,6 +4,7 @@
   "description": "oscra front ui",
   "scripts": {
     "test": "test",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
     "start": "node ./serve.js"
   },
   "repository": {
