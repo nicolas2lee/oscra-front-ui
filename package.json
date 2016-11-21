@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "oscra front ui",
   "scripts": {
-    //"test": "test",
-    "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors",
     "start": "node ./serve.js"
   },
   "repository": {
@@ -35,7 +33,8 @@
     "angular-ui-router": "^0.3.1",
     "css-loader": "^0.25.0",
     "html-loader": "^0.4.4",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack-dev-server": "^1.16.2"
   },
   "devDependencies": {
     "webpack": "^1.13.2",
