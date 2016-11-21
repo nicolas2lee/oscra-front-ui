@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "oscra front ui",
   "scripts": {
-    "build": "webpack --config ./webpack.config.js --progress --colors",
-    "start": "node ./serve.js",
-
-
-
+    "postinstall": "npm install webpack",
+    "start": "node ./serve.js"
   },
   "repository": {
     "type": "git",
