@@ -7,10 +7,12 @@ require('angular-animate');
 require('angular-aria');
 require('angular-material');
 
+require('angular-cookies');
+
 require('./util/api');
 
 var app = angular.module('oscra-ui',
-    ['ui.router','ngMaterial',
+    ['ui.router','ngMaterial', 'ngCookies',
         'oscra-ui.cra',   'oscra-ui.util',    'oscra-ui.activitytype', 'oscra-ui.setting',
         'oscra-ui.table', 'oscra-ui.absence', 'oscra-ui.login',        'oscra-ui.user',    'oscra-ui.notif']);
 
@@ -82,7 +84,7 @@ app.config(function($mdThemingProvider) {
                     }
                 }
             })
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/');
     });
 
 

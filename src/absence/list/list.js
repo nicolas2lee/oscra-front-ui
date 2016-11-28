@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(AbsenceService, LoginService, $scope){
+module.exports = function controller(AbsenceService, MyProfile, $scope, $cookies){
 
     var vm = this;
     vm.content=[];
@@ -8,22 +8,21 @@ module.exports = function controller(AbsenceService, LoginService, $scope){
     vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
     vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
     vm.count = 5;
-    vm.currentUserId = 1;
+
     init();
 
     function init() {
-
         vm.currentpage=0;
         vm.headers = [{name:'Id', field:'id'},
             {name: 'Début', field:'starttime'},
             {name: 'Fin', field:'endtime'},
             {name: 'Statut', field: 'status'},
-            {name: 'Provider', field: 'provider'},
-            {name: 'Validator', field:'validator'},
-            {name: 'LastModifyBy', field:'lastModifyBy'},
+            {name: 'Demandeur', field: 'provider'},
+            {name: 'Manager', field:'validator'},
+            {name: 'Mis à jour par', field:'lastModifyBy'},
+            {name: 'Date de mis à jour', field:'updated'},
             {name: 'Action', field: 'action'}];
-        AbsenceService.mylist(vm.currentpage, vm.currentUserId, function (response) {
-
+        AbsenceService.mylist(vm.currentpage, MyProfile.currentUser.id, function (response) {
             var absences = adaptToHeaders(response.data);
             console.log(absences)
             vm.content = absences;
@@ -36,15 +35,16 @@ module.exports = function controller(AbsenceService, LoginService, $scope){
             absence['provider']=convertUserObjToName(absence['provider']);
             absence['validator']=convertUserObjToName(absence['validator']);
             absence['lastModifyBy']=convertUserObjToName(absence['lastModifyUser']);
-            console.log(absence['starttime'])
             absence['starttime']=convertToDateString(absence['starttime']);
             absence['endtime']=convertToDateString(absence['endtime']);
+            absence['updated']=convertToDateString(absence['updated']);
         })
         return absences;
     }
 
     function convertToDateString(obj){
-        return (new Date(obj)).toLocaleDateString();
+        var dateObj = new Date(obj);
+        return dateObj.toLocaleDateString()+' '+ dateObj.toLocaleTimeString();
     }
     function convertUserObjToName(user){
         return user.firstName+' '+ user.lastName;
@@ -63,7 +63,7 @@ module.exports = function controller(AbsenceService, LoginService, $scope){
 
     $scope.$on('sendCurrentPage', function(event,currentPage){
         vm.currentpage=currentPage;
-        AbsenceService.mylist(vm.currentpage, vm.currentUserId, function (response) {
+        AbsenceService.mylist(vm.currentpage, MyProfile.currentUser.id, function (response) {
             var absences = adaptToHeaders(response.data);
             vm.content.splice.apply(vm.content, [vm.content.length, 0].concat(absences))
         })

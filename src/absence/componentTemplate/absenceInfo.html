@@ -20,7 +20,7 @@
                         <md-input-container>
                             <label>Type de congé </label>
                             <md-select ng-model="$ctrl.absence.absenceType" md-selected-text="$ctrl.getSelectedText($ctrl.absence.absenceType)">
-                                <md-optgroup label="absencetypes">
+                                <md-optgroup label="Type de congé">
                                     <md-option ng-repeat="absencetype in $ctrl.absencetypes track by absencetype.id"
                                                ng-selected="absencetype.id === $ctrl.absence.absenceType.id" ng-value="absencetype" >
                                         {{absencetype.name}}

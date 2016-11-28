@@ -20,10 +20,22 @@
             <i class="material-icons">help</i>
         </md-button>
 
-        <md-button class="md-icon-button" aria-label="User" ng-click="">
-            <md-tooltip>User</md-tooltip>
-            <ai class="material-icons md-24" >account_box</ai>
-        </md-button>
+        <md-menu md-position-mode="target-right target">
+            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-tooltip>User</md-tooltip>
+                <i class="material-icons md-24" >account_box</i>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item ng-repeat="item in headbarCtrl.usermenu">
+                    <md-button ng-click="headbarCtrl.announceClick($index)">
+                        <div layout="row" flex="">
+                            <p flex="">{{item}}</p>
+                            <md-icon md-menu-align-target="" md-svg-icon="call:portable-wifi-off" style="margin: auto 3px auto 0;"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </div>
 </md-toolbar>
 <!--/div-->

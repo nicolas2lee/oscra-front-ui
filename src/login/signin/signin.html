@@ -6,14 +6,14 @@
         <form ng-cloak ng-submit="signinCtrl.signin(user)" layout="column">
             <md-toolbar>
                 <div class="md-toolbar-tools">
-                    <h2>Login</h2>
+                    <h2>Se connecter</h2>
                 </div>
             </md-toolbar>
 
 
             <md-whiteframe  layout-padding >
                 <md-content md-theme="docs-dark" layout="column">
-                    <md-input-container>
+                    <!--md-input-container>
                         <label>Email</label>
                         <input ng-model="user.email" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
 
@@ -22,16 +22,21 @@
                                 Your email must be between 10 and 100 characters long and look like an e-mail address.
                             </div>
                         </div>
+                    </md-input-container-->
+
+                    <md-input-container>
+                        <label>Identifiant</label>
+                        <input ng-model="user.username" type="username" required >
                     </md-input-container>
 
                     <md-input-container>
-                        <label>Password</label>
+                        <label>Mot de passe</label>
                         <input ng-model="user.password" type="password" required >
                     </md-input-container>
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
-                            <md-button class="md-raised"  type="submit">Login</md-button>
+                            <md-button class="md-raised"  type="submit">Connecter</md-button>
                             <md-button class="md-raised md-primary" >Register</md-button>
                         </div>
                     </md-input-container>
