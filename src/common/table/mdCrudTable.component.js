@@ -9,6 +9,7 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
         filters: '=',
         customClass: '=',
         count: '=',
+        statusflag: '=',
         lazyloading: '=',
         listurl: '@',
         modifyurl : '@',

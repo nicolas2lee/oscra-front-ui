@@ -12,7 +12,7 @@ module.exports = function controller(CraNotifService, AbsenceNotifService, MyPro
         vm.cranotifHeaders=[{name:'Id', field:'id'},
             {name: 'Information du compte-rendu d\'activité(CRA) ', field: 'cra'},
             {name: 'Message envoyé par', field: 'crafrom'},
-            {name: 'Description', field: 'description'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'outlinkid', field: 'outlinkid'},
             {name: 'Action', field: 'action'}
         ];
@@ -30,11 +30,11 @@ module.exports = function controller(CraNotifService, AbsenceNotifService, MyPro
         vm.absencenotifHeaders=[{name:'Id', field:'id'},
             {name: 'Information du Congé', field: 'absence'},
             {name: 'Message envoyé par', field: 'absencefrom'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'outlinkid', field: 'outlinkid'},
-            {name: 'Description', field: 'description'},
             {name: 'Action', field: 'action'}
         ];
-        vm.absencenotifSortable = ['id', 'absence','absencefrom', 'description'];
+        vm.absencenotifSortable = ['id', 'absence','absencefrom'];
         AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.currentUser.id, function (response) {
             vm.absencenotifContent=adaptAbsenceDataToDisplay(response.data);
             vm.initabsencenotifloaded = true;
@@ -45,11 +45,13 @@ module.exports = function controller(CraNotifService, AbsenceNotifService, MyPro
         console.log(rawdata)
         var finaldata=[];
         rawdata.forEach(function(anotif){
+            var updatedObj = new Date(anotif.updated);
             finaldata.push({
                 id : anotif.id,
                 cra : createCraString(anotif.cra, anotif),
                 crafrom : anotif.crafrom.firstName + ' ' + anotif.crafrom.lastName,
-                outlinkid: anotif.cra.id
+                outlinkid: anotif.cra.id,
+                updated: updatedObj.toLocaleDateString()+''+updatedObj.toLocaleTimeString()
             })
         })
         return finaldata
@@ -59,11 +61,13 @@ module.exports = function controller(CraNotifService, AbsenceNotifService, MyPro
         console.log(rawdata)
         var finaldata=[];
         rawdata.forEach(function(anotif){
+            var updatedObj = new Date(anotif.updated);
             finaldata.push({
                 id : anotif.id,
                 absence : createAbsenceString(anotif.absence, anotif),
                 absencefrom : anotif.absencefrom.firstName + ' ' + anotif.absencefrom.lastName,
-                outlinkid: anotif.absence.id
+                outlinkid: anotif.absence.id,
+                updated: updatedObj.toLocaleDateString()+''+updatedObj.toLocaleTimeString()
             })
         })
         return finaldata

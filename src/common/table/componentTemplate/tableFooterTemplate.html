@@ -1,21 +1,52 @@
-<span class="md-table-count-info">Rows per page :
-            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=5">5</a>,
-            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=10">10</a>,
-            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=25">25</a>,
-            <!--a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=100">100</a-->
-            {{count}} (current is {{$ctrl.count}} )
+<div layout="column">
+    <div layout="row">
+        <span class="md-table-count-info">Rangée par page :
+                    <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=5">5</a>,
+                    <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=10">10</a>,
+                    <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=25">25</a>,
+                    <!--a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=100">100</a-->
+                    {{count}} (actuel est {{$ctrl.count}} )
+                </span>
+        <span flex="flex"></span>
+        <span ng-show="$ctrl.nbOfPages() &gt; 1">
+                  <md-button ng-disabled="tablePage==0" ng-click="$ctrl.tablePage=$ctrl.tablePage-1" aria-label="Previous Page" class="md-primary md-hue-2">
+                      <i class="material-icons">chevron_left</i>
+                  </md-button>
+                    <a ui-sref="{{$ctrl.listurl}}" ng-repeat="i in $ctrl.getNumber($ctrl.nbOfPages()) track by $index">
+                      <md-button ng-click="$ctrl.goToPage($index)" class="md-primary md-hue-2 md-table-footer-item">
+                          <span ng-class="{ 'md-table-active-page': $ctrl.tablePage==$index}">{{$index+1}}</span>
+                      </md-button>
+                    </a>
+                  <md-button ng-disabled="$ctrl.tablePage==$ctrl.nbOfPages()-1" ng-click="$ctrl.tablePage=tablePage+1" aria-label="Next Page" class="md-primary md-hue-2">
+                      <i class="material-icons">chevron_right</i>
+                  </md-button>
         </span>
-<span flex="flex"></span>
-<span ng-show="$ctrl.nbOfPages() &gt; 1">
-          <md-button ng-disabled="tablePage==0" ng-click="$ctrl.tablePage=$ctrl.tablePage-1" aria-label="Previous Page" class="md-primary md-hue-2">
-              <i class="material-icons">chevron_left</i>
-          </md-button>
-            <a ui-sref="{{$ctrl.listurl}}" ng-repeat="i in $ctrl.getNumber($ctrl.nbOfPages()) track by $index">
-              <md-button ng-click="$ctrl.goToPage($index)" class="md-primary md-hue-2 md-table-footer-item">
-                  <span ng-class="{ 'md-table-active-page': $ctrl.tablePage==$index}">{{$index+1}}</span>
-              </md-button>
-            </a>
-          <md-button ng-disabled="$ctrl.tablePage==$ctrl.nbOfPages()-1" ng-click="$ctrl.tablePage=tablePage+1" aria-label="Next Page" class="md-primary md-hue-2">
-              <i class="material-icons">chevron_right</i>
-          </md-button>
-</span>
+    </div>
+
+    <!--div layout="row" layout-padding="">
+        <div >
+            <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_black_24px.svg">
+                black (Your browser does not support SVG)
+            </object>
+            N'a pas envoyé
+        </div>
+        <div >
+            <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_yellow_24px.svg">
+                yellow (Your browser does not support SVG)
+            </object>
+            Envoyé mais n'a pas encore traité
+        </div>
+        <div >
+            <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_red_24px.svg">
+                red (Your browser does not support SVG)
+            </object>
+            Envoyé et il'a refusé
+        </div>
+        <div >
+            <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_green_24px.svg">
+                green (Your browser does not support SVG)
+            </object>
+            Envoyé et il'a approuvé
+        </div>
+    </div-->
+</div>

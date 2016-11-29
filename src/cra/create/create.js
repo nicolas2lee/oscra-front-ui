@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(ActivityTypeService, UserService, CraService, $scope, $state){
+module.exports = function controller(ActivityTypeService, MyProfile, CraService, $scope, $state){
 
     var vm = this;
     vm.years =[];
@@ -10,17 +10,14 @@ module.exports = function controller(ActivityTypeService, UserService, CraServic
     init();
 
     function init() {
-        vm.needLoadData = 2;
+        vm.needLoadData = 1;
+        vm.currentUser = MyProfile.currentUser;
         vm.loadCraDetail = false;
         vm.activitiesHeader=[];
         vm.currentUserId = 1;
         vm.status =[ 'NOT_TRANSIMITTED',
             'TRANSIMITTED_NOT_VALIDATED',
             'VALIDATED_TRANSIMITTED'];
-        UserService.findById(vm.currentUserId, function(response){
-            vm.currentUser=response.data;
-            vm.needLoadData-=1;
-        })
         ActivityTypeService.list(function(response){
             var activityTypes = response.data;
             for (var i=0; i<activityTypes.length;i++){
@@ -95,8 +92,8 @@ module.exports = function controller(ActivityTypeService, UserService, CraServic
 
     $scope.$on('sendCra', function(event,cra){
         var providerId = vm.currentUser.id;
-        var validatorId = 2;
-        var lastModifyUserId = 2;
+        var validatorId = vm.currentUser.manager.id;
+        var lastModifyUserId = vm.currentUser.id;
         delete cra["provider"];
         /*
         delete initcra["validator"];

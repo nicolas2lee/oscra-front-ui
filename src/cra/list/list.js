@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(CraService, ActivityService, $scope){
+module.exports = function controller(CraService, ActivityService, MyProfile, $scope){
 
     var vm = this;
 
@@ -20,12 +20,17 @@ module.exports = function controller(CraService, ActivityService, $scope){
         vm.headers=[
             {name: 'Id', field:'id'},
             {name: 'Mois', field: 'month'},
-            {name: 'Validation', field:'validation'},
             {name: 'Statut', field: 'status'},
             {name: 'Mis à jour par', field: 'lastModifyBy'},
             {name: 'Date de mis à jour', field: 'updated'},
             {name: 'Action', field: 'action'}
         ];
+        vm.statusflag={
+            'NOT_TRANSIMITTED': 'blankflag',
+            'TRANSIMITTED_TO_VALIDATE': 'yellowflag',
+            'TRANSIMITTED_AGREED': 'greenflag',
+            'TRANSIMITTED_REFUSED': 'redflag'
+        };
         vm.sortable = ['id','month', 'validation','status','lastModifyBy','lastUpdatedTime'];
         vm.count=5
         vm.currentpage=0;
@@ -34,8 +39,7 @@ module.exports = function controller(CraService, ActivityService, $scope){
     }
 
     function getAllCras(){
-        var myuserid=1;
-        CraService.mylist(myuserid, function(response){
+        CraService.mylist(MyProfile.currentUser.id, function(response){
             var rawcra = response.data;
             var finalcra=[];
             for (var i=0;i<rawcra.length;i++){

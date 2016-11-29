@@ -10,10 +10,37 @@
 
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
                 ng-init="f =  c[h.field]">
-                    {{f}}
+                    {{ c[h.field] }}
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
-                    {{ c[h.field] }}
+
+                    <div ng-if=" h.field != 'status' ">
+                        {{c[h.field]}}
+                    </div>
+                    <div ng-if=" h.field == 'status' ">
+                        <div ng-switch="$ctrl.statusflag[c[h.field]]">
+                            <div ng-switch-when="blankflag">
+                                <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_black_24px.svg">
+                                    black (Your browser does not support SVG)
+                                </object>
+                            </div>
+                            <div ng-switch-when="yellowflag">
+                                <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_yellow_24px.svg">
+                                    yellow (Your browser does not support SVG)
+                                </object>
+                            </div>
+                            <div ng-switch-when="redflag">
+                                <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_red_24px.svg">
+                                    red (Your browser does not support SVG)
+                                </object>
+                            </div>
+                            <div ng-switch-when="greenflag">
+                                <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_green_24px.svg">
+                                    green (Your browser does not support SVG)
+                                </object>
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'action'" class="md-table-content" layout="row">
                     <div ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"

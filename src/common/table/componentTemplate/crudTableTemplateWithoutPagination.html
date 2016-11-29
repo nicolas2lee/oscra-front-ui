@@ -8,11 +8,11 @@
         <tbody>
             <tr ng-repeat="c in $ctrl.content | filter:$ctrl.filters"  class="md-table-content-row">
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
-                ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
+                ng-init="f = c[h.field]">
                     {{f}}
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' &amp;&amp; h.field != 'outlinkid' " class="md-table-content" >
-                    {{(h.field.indexOf('date') > 0) ?  $filter('date')(c[h.field])  : c[h.field];}}
+                    {{c[h.field]}}
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'action'" class="md-table-content" layout="row">
                     <div ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'outlinkid' " class="md-table-content"
