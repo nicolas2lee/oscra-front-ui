@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(AbsenceService, ActivityTypeService, $stateParams, $scope, $state){
+module.exports = function controller(AbsenceService, ActivityTypeService, MyProfile, $stateParams, $scope, $state){
 
     var vm = this;
 
@@ -21,7 +21,7 @@ module.exports = function controller(AbsenceService, ActivityTypeService, $state
 
     $scope.$on('sendAbsence', function(event,absence){
         console.log(absence)
-        AbsenceService.modify(absence, absence.absenceType.id, absence.provider.id, absence.validator.id, absence.lastModifyUser.id,  function (response) {
+        AbsenceService.modify(absence, absence.absenceType.id, absence.provider.id, absence.validator.id, MyProfile.getCurrentUser().id,  function (response) {
             if (response.status ==200){
                 alert('ok');
                 $scope.$broadcast("absenceUpdated")

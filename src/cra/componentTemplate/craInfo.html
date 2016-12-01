@@ -106,7 +106,9 @@
                                                         <div ng-switch-when="0" ng-click="$ctrl.chooseDay(activity,day)">0&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity,day)">0.5&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-when="2" ng-click="$ctrl.chooseDay(activity,day)">1&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-default ng-click="$ctrl.chooseDay(activity,day)">0&nbsp;&nbsp;&nbsp;</div>
                                                     </div>
+
                                                     <div ng-if="activity == 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()]">
                                                         <div ng-switch-when="0" >0&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-when="0.5" >0.5&nbsp;&nbsp;&nbsp;</div>

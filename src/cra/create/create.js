@@ -11,7 +11,7 @@ module.exports = function controller(ActivityTypeService, MyProfile, CraService,
 
     function init() {
         vm.needLoadData = 1;
-        vm.currentUser = MyProfile.currentUser;
+        vm.currentUser = MyProfile.getCurrentUser();
         vm.loadCraDetail = false;
         vm.activitiesHeader=[];
         vm.currentUserId = 1;

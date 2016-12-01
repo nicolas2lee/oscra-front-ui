@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(CraService, ActivityTypeService, $stateParams, $scope, $state){
+module.exports = function controller(CraService, ActivityTypeService, MyProfile, $stateParams, $scope, $state){
 
     var vm = this;
 
@@ -52,11 +52,11 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
 
         var providerId = initcra.provider.id;
         var validatorId = initcra.validator.id;
-        var lastModifyUserId = initcra.lastModifyUser.id;
+
         delete initcra["provider"];
         delete initcra["validator"];
         delete initcra["lastModifyUser"];
-        CraService.modify(initcra, providerId, validatorId, lastModifyUserId, function (response){
+        CraService.modify(initcra, providerId, validatorId, MyProfile.getCurrentUser().id, function (response){
             console.log(response.data)
             if (response.status ==200){
 

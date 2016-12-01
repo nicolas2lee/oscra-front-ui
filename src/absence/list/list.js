@@ -22,7 +22,12 @@ module.exports = function controller(AbsenceService, MyProfile, $scope, $cookies
             {name: 'Mis à jour par', field:'lastModifyBy'},
             {name: 'Date de mis à jour', field:'updated'},
             {name: 'Action', field: 'action'}];
-        AbsenceService.mylist(vm.currentpage, MyProfile.currentUser.id, function (response) {
+        vm.statusflag={
+            'TO_VALIDATE': 'blankflag',
+            'AGREED': 'greenflag',
+            'REFUSED': 'redflag'
+        };
+        AbsenceService.mylist(vm.currentpage, MyProfile.getCurrentUser().id, function (response) {
             var absences = adaptToHeaders(response.data);
             console.log(absences)
             vm.content = absences;
@@ -63,7 +68,7 @@ module.exports = function controller(AbsenceService, MyProfile, $scope, $cookies
 
     $scope.$on('sendCurrentPage', function(event,currentPage){
         vm.currentpage=currentPage;
-        AbsenceService.mylist(vm.currentpage, MyProfile.currentUser.id, function (response) {
+        AbsenceService.mylist(vm.currentpage, MyProfile.getCurrentUser().id, function (response) {
             var absences = adaptToHeaders(response.data);
             vm.content.splice.apply(vm.content, [vm.content.length, 0].concat(absences))
         })

@@ -86,20 +86,36 @@ angular.module('oscra-ui.cra').component('crainfo', {
             })
             vm.craActivities.push('Total');
             vm.clickcount['Total']=clearMonthDayCounter();
-            //vm.clickcount['Total']=countTotal();
+            countTotal();
+            console.log(vm.clickcount['Total'])
         }
 
         function mergeCounter(src, aname){
             for(var i=0;i<src.length;i++){
                 vm.clickcount[aname][i]+=src[i];
+                vm.clickcount[aname][i]%=3;
             }
         }
         
         function countTotal() {
+            console.log(vm.craActivities)
             vm.craActivities.forEach(function (activityname) {
+                console.log(activityname)
                 if (activityname != 'Total') {
-                    for (var i=0; i<activityname.length;i++){
-                        vm.clickcount['Total'][i]+=vm.clickcount[activityname][i]
+                    for (var i=0; i<vm.clickcount[activityname].length;i++){
+                        var add=0;
+                        switch (vm.clickcount[activityname][i]){
+                            case 0:
+                                add=0;
+                                break;
+                            case 1:
+                                add=0.5;
+                                break;
+                            case 2:
+                                add=1;
+                                break;
+                        }
+                        vm.clickcount['Total'][i]+=add;
                     }
                 }
             })

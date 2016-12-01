@@ -17,7 +17,7 @@ module.exports = function controller(CraNotifService, AbsenceNotifService, MyPro
             {name: 'Action', field: 'action'}
         ];
         vm.cranotifSortable = ['id','cra', 'crafrom','description'];
-        CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, MyProfile.currentUser.id, function(response){
+        CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, MyProfile.getCurrentUser().id, function(response){
             console.log('cranotif works')
             console.log(response.data)
             vm.cranotifContent=adaptCraDataToDisplay(response.data);
@@ -35,7 +35,7 @@ module.exports = function controller(CraNotifService, AbsenceNotifService, MyPro
             {name: 'Action', field: 'action'}
         ];
         vm.absencenotifSortable = ['id', 'absence','absencefrom'];
-        AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.currentUser.id, function (response) {
+        AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.getCurrentUser().id, function (response) {
             vm.absencenotifContent=adaptAbsenceDataToDisplay(response.data);
             vm.initabsencenotifloaded = true;
         })

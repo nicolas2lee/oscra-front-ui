@@ -39,7 +39,7 @@ module.exports = function controller(CraService, ActivityService, MyProfile, $sc
     }
 
     function getAllCras(){
-        CraService.mylist(MyProfile.currentUser.id, function(response){
+        CraService.mylist(MyProfile.getCurrentUser().id, function(response){
             var rawcra = response.data;
             var finalcra=[];
             for (var i=0;i<rawcra.length;i++){

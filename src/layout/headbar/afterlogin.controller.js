@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function ($scope, $mdDialog, $state, $rootScope, $cookies, LoginService) {
+module.exports = function ($scope, $mdDialog, $state, $rootScope, $cookies, LoginService, MyProfile) {
 
     var vm = this;
     var originatorEv;
@@ -44,6 +44,7 @@ module.exports = function ($scope, $mdDialog, $state, $rootScope, $cookies, Logi
             case 1:
                 LoginService.signout(function(response){
                     if (response.status==200){
+                        MyProfile.setCurrentUser(undefined);
                         $state.go('beforelogin');
                     }else {
                         alert('System error')
